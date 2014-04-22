@@ -1,5 +1,5 @@
 require "smfapi/version"
 
-module Smfapi
+module SMFAPI
   # Your code goes here...
 end
