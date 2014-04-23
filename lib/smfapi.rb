@@ -25,13 +25,17 @@ module SMFAPI
     end
 
     def populate_subforums
-      page = @agent.get @url
-      nodes = page.search('//h4/a[contains(@href,"board=")]')
-      @subforums = []
-      nodes.each do |node|
-        subforum = SMFForum.new node.inner_text, node['href']
-        @subforums << subforum
+      unless @subforums_populated
+        page = @agent.get @url
+        nodes = page.search('//h4/a[contains(@href,"board=")]')
+        @subforums = []
+        nodes.each do |node|
+          subforum = SMFForum.new node.inner_text, node['href']
+          @subforums << subforum
+        end
+        @subforums_populated = true
       end
+
       @subforums
     end
    
