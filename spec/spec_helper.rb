@@ -17,4 +17,6 @@ RSpec.configure do |config|
 end
 
 require "webmock/rspec"
+require "mechanize"
 require "smfapi"
+include SMFAPI
