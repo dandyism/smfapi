@@ -16,6 +16,7 @@ module SMFAPI
   class SMFForum
 
     attr_populate :subforums
+    attr_reader   :name
 
     def initialize(name, url)
       @name = name
@@ -37,6 +38,16 @@ module SMFAPI
       end
 
       @subforums
+    end
+
+    def subforum(str)
+      result = subforums.find { |sub| sub.name == str }
+      i = 0
+      while result.nil? and i < subforums.size
+        result = subforums[i].subforum str
+        i += 1
+      end
+      result
     end
    
   end
